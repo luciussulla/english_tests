@@ -17,7 +17,7 @@
     $question_input .= " <input type=\"text\" value=\"\" name=\"answer-{$question_id}\" /> "; 
     $question_input .= $array[1];
     $question_input .= "</p>";
-
+    
     return $question_input; 
   }
 
@@ -32,8 +32,26 @@
     } else {
       // if no blank was inserted just the beginning of the question you get the question back
       // still need work here to return full question with input field
-      return $q; 
+      return $question_assoc["question"]; 
     } 
-  }  
+  } 
+  
+  function correct_answers_into_json($query_result) {
+    global $connection; 
+    // var_dump($query_result); 
+    // echo $query_result; 
+
+    $question_answer_array = array(); 
+    while($assoc = mysqli_fetch_assoc($query_result)) {
+      var_dump($assoc); 
+      echo "dupa"; 
+      // echo $assoc; 
+      $question_answer_array[] = array('id'=>$assoc["id"], 'answer'=>$assoc["answer"]);
+      // array_push($question_answer_array, $obj); 
+    }
+    // mysqli_free_result($query_result); 
+    // var_dump($question_answer_array); 
+    return $question_answer_array; 
+  }
 
 ?>  

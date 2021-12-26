@@ -40,7 +40,9 @@
     mysqli_free_result($result); 
   ?>
 
-  <a href="./questions/transformations/new.php">Create new transformation</a>
+  <a href="./questions/transformations/new.php">Create new transformation</a><br/>
+  <a href="./test/show.php">Start test</a>
+
 </body>
 </html>
 <?php 
