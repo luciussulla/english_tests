@@ -11,19 +11,10 @@
     die("Database query failerd" . mysqli_error());
   } else {
     echo "Successful query <br/>"; 
-    
   }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tester</title>
-</head>
-<body>
+<?php include('../layouts/header.php')?>
 
   <?php 
     $answers_array = array(); // prepare JONS with correct answers and question_ids which then is send as hidden field to show for checking users answers
@@ -42,12 +33,9 @@
     $form .= "<input type=\"hidden\" name=\"answers_json\" value='" . $answers_array_json . "' >";
     $form .= "<input type=\"submit\" name=\"submit\"/ value=\"Send\" >"; 
     $form .= "</form>"; 
-    echo $form
+    echo $form; 
   ?>
   <?php mysqli_free_result($result);?>
 
-</body>
-</html>
-<?php 
-  mysqli_close($connection); 
-?>
+<?php mysqli_close($connection); ?>
+<?php include('../layouts/footer.php')?>
