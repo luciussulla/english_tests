@@ -20,8 +20,8 @@
     return $correct_answers_array; 
   }
 
-  function calculate_percentage($total_exercises, $points) {
-    $result = round(($total_exercises / $points),2) * 100; 
+  function calculate_percentage($points, $max_points) {
+    $result = round(($points/$max_points),2) * 100; 
     return $result;
   }
 ?>

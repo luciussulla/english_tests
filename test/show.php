@@ -1,3 +1,5 @@
+<?php include('./root.php'); ?>
+
 <?php 
   include('../db_connection.php'); 
   include('../functions.php'); 
@@ -15,7 +17,7 @@
 ?>
 
 <?php include('../layouts/header.php')?>
-
+  
   <?php 
     $answers_array = array(); // prepare JONS with correct answers and question_ids which then is send as hidden field to show for checking users answers
     $form = "<form action=\"../checker/checker.php\" method=\"post\">"; 
@@ -35,6 +37,7 @@
     $form .= "</form>"; 
     echo $form; 
   ?>
+
   <?php mysqli_free_result($result);?>
 
 <?php mysqli_close($connection); ?>

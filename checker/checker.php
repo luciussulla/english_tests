@@ -1,4 +1,7 @@
+<?php include('./root.php'); ?>
 <?php include('helpers.php'); ?>
+<?php include('../functions.php'); ?>
+
 <?php 
   // 1 - turn $_POST["answers_json] in an associative array
   // $answer_json = $_POST["answers_json"]; 
