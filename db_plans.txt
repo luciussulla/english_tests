@@ -1,0 +1,38 @@
+test_results table
+
+id
+test_id 
+student_name
+grade 
+percentage
+answers_json ? 
+
+
+We just want to store the grade for the test nothing more. Later maybe we can store json string with all the answers as text field in the db. Which can be later shown.
+
+- normally we want the test_id to come from the test loaded into the show page... but for now it will be hardcoded as 1... questions will be loaded from db (first 15 questions)
+- on the test show.php page put the field for student name and hidden field for test_id 
+- in the test folder create a service that saves the resutls of the test into the test_results table
+- try saving student answers as json file 
+
+
+-------
+
+test_template table
+
+ -id 
+ -test_name
+ -subject 
+ -topic 
+
+Temporarily one exercise can belong to one test (no mamy to many) 
+when forming an exercise you ad the test id. 
+so basically when creating the test we already add the exercises 
+how? - have a select list with available tests 
+
+exercise_id 
+ - _test_id
+ - ... rest that wealreadu have 
+
+
+

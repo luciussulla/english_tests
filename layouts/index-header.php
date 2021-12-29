@@ -18,6 +18,6 @@
     </ul>
   </div><!-- end menu --> 
   <h1 class="hero-center">Test your english grammar skills</h1>
-  <button class="hero-btn hero-center">Start test</button>
+  <a href="./test/show.php" class="hero-btn hero-center">Start test</a>
 </div>
 

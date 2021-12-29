@@ -41,14 +41,15 @@ for($i=0; $i<=count($correct_answers_array)-1; $i++) {
     $answers_html .= ">User answer: {$user_values_array[$i]}</p>";
   $answers_html .= "</div><br/>"; 
 }
+
+  $answers_html .= "<div class=\"test_summary\">"; 
+    $answers_html .= "<p>Points scored: {$points} out of " . count($correct_answers_array) . "</p>"; 
+    // 4 - compare both arrays and calculate the percentage of correct answers 
+    $percentage_scored = calculate_percentage($points, count($correct_answers_array));  
+    $answers_html .= "<p>Percentage scored: ". $percentage_scored ."%</p>"; 
+  $answers_html .= "</div>";   
 $answers_html .= "</div>"; 
 
-$answers_html .= "<div class=\"test_summary\">"; 
-  $answers_html .= "<p>Points scored: {$points} out of " . count($correct_answers_array) . "</p>"; 
-  // 4 - compare both arrays and calculate the percentage of correct answers 
-  $percentage_scored = calculate_percentage(count($correct_answers_array), $points);  
-  $answers_html .= "<p>Percentage scored: ". $percentage_scored ."%</p>"; 
-$answers_html .= "</div>";   
 // 5 - compare the percentage to a scale 
 
 echo $answers_html;   

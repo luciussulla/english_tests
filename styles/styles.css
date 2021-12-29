@@ -45,14 +45,16 @@
   outline: none; 
   border: none; 
   transform: translate(-50%,-50%);
-  transition: top .3s ease; 
-  width: 200px; 
+  transition: top .3s ease, background-color .3s ease; 
+  width: 180px; 
   font-size: 1.1rem; 
+  text-decoration: none;
+ 
 }
 
 .hero-btn:hover {
   top: 45.5%; 
-  background: rgba(149, 149, 255, .9); 
+  background: rgba(149, 149, 255, .7); 
 }
 
 .container {
@@ -67,13 +69,15 @@
    height: 50px; 
    padding: 10px; 
    text-align: right; 
+   background-color: #fff;
 }
 
-.menu.index-menu a{
-  color: #fff;
+.menu.index-menu {
+  background-color: transparent;
 }
 
 .menu.index-menu a {
+  color: #fff;
   border-bottom: 1px solid transparent; 
   transition: border-bottom 1s; 
 }
@@ -116,9 +120,11 @@
 /* CHECKER BODY */
 .checked_answers {
   /* border: 1px solid blue;  */
+  position: relative; 
   padding: 0 0 0 100px; 
   font-size: 1.1rem; 
   margin-bottom: 40px; 
+  margin-top: 40px; 
 }
 
   .checked_answers p {
@@ -128,12 +134,12 @@
   .single_answer {
     margin-bottom: 20px; 
     background-color: white;
-    border-radius: 20px;
+    border-radius: 5px;
     display: inline-block; 
     width: 200px; 
     min-width: 200px;  
     padding: 20px; 
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
   }
     .correct {
       color: green; 
@@ -143,12 +149,15 @@
     }
 
 .test_summary {
-  text-align: right; 
-  padding-right: 130px; 
-  border: 1px solid red; 
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2); 
+  background-color: rgb(127, 127, 248);
+  border-radius: 5px; 
+  padding: 20px; 
+  display: inline-block;  
 }
   .test_summary p {
     margin-top: 5px; 
+    color: #fff; 
   }
 /* END OF CHECKER BODY */
 /* BUTTONS */ 
@@ -205,4 +214,18 @@
 
 .instructions {
   margin-top: 5px; 
+}
+
+/* SINGLE QUESTION */ 
+
+.single-question {
+  margin-top: 20px; 
+}
+
+.result-tab {
+  display: inline-block; 
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2); 
+  background-color: rgb(127, 127, 248);
+  border-radius: 5px; 
+  padding: 20px; 
 }
