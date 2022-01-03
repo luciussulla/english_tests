@@ -6,7 +6,7 @@
     // make an array out of the object 
     $answers_array = array(); 
     foreach($user_answers as $key=>$value) {
-      $answers_array[] = $value; 
+      $answers_array[] = trim($value); // the user answers are stipped of beginning and end white space;
     }
     return $answers_array; 
   }
@@ -26,13 +26,47 @@
     return $result;
   }
 
+  function grade($percent) {
+    $grade = null; 
+    /*
+    0	-	60 %	=	2
+    61 - 70 %	=	3
+    71 - 75 %	=	3,5
+    76 - 85 %	=	4
+    86 - 90 %	=	4,5
+    91 - 100 %	=	5
+    */ 
+    switch($percent) {
+      case ($percent < 61 ): 
+        $grade = 2; 
+        break; 
+      case ($percent < 71 ): 
+        $grade = 3; 
+        break; 
+      case ($percent < 76): 
+        $grade = 3.5; 
+        break; 
+      case ($percent < 86):
+        $grade = 4; 
+        break;
+      case ($percent < 91): 
+        $grade = 4.5; 
+        break;
+      case ($percent < 1001): 
+        $grade = 5;
+      default: 
+        $grade = null;    
+    }
+    return $grade; 
+  }
+
   function save_posted($points, $percentage_scored, $user_values_array) {
     include('../db_connection.php'); 
     // process request: 
     $student_name = $_POST["student_name"]; 
     $answers_array_json = json_encode($user_values_array); 
-    $grade = 5; // calculate it on the basis of scored percentage
-
+    $grade = grade($percentage_scored); // calculate it on the basis of scored percentage
+    
     // - already done in previous functions 
     // validations 
     // - to be implemented later 
@@ -56,7 +90,6 @@
       echo "problem saving"; 
     }
     // handle wrong request to page 
-
     if(isset($connection)) { mysqli_close($connection);} 
   }
 
