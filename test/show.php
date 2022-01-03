@@ -34,10 +34,7 @@
         $form .= $ready_question;   
         $form .= "</div>"; 
       }
-
-      $answers_array_json = json_encode($answers_array); 
-      // var_dump($answers_array_json);
-      $form .= "<input type=\"hidden\" name=\"answers_json\" value='" . $answers_array_json . "' >";
+      $form .= "<input type=\"hidden\" name=\"answers_json\" value='" . json_encode($answers_array) . "' >";
       $form .= "<input class=\"button form-button\" type=\"submit\" name=\"submit\"/ value=\"Send\" >"; 
       $form .= "</form>"; 
       echo $form; 
