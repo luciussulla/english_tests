@@ -60,13 +60,12 @@
     return $grade; 
   }
 
-  function save_posted($points, $percentage_scored, $user_values_array) {
+  function save_posted($points, $percentage_scored, $grade, $user_values_array) {
     include('../db_connection.php'); 
     // process request: 
     $student_name = $_POST["student_name"]; 
     $answers_array_json = json_encode($user_values_array); 
-    $grade = grade($percentage_scored); // calculate it on the basis of scored percentage
-    
+
     // - already done in previous functions 
     // validations 
     // - to be implemented later 
@@ -96,6 +95,7 @@
   function process_user_submission() {
     // db save side 
     $points = 0;
+    $grade = 0; 
     $percentage_scored = 0; 
     $user_values_array = process_post_req(); 
     $correct_answers_array_of_objects = json_decode($_POST["answers_json"]); // array of objects
@@ -109,19 +109,23 @@
         $correct = true; 
       }
       $answers_html .= "<div class=\"single_answer\">";
-        $answers_html .= "<p>Correct answer: {$correct_answers_array[$i]}</p>";
-        $answers_html .= "<p class="; 
-        if ($correct) { $answers_html .= "correct"; } else { $answers_html .= "incorrect"; }
-        $answers_html .= ">User answer: {$user_values_array[$i]}</p>";
+      $answers_html .= "<p>Correct answer: {$correct_answers_array[$i]}</p>";
+      $answers_html .= "<p class="; 
+      if ($correct) { $answers_html .= "correct"; } else { $answers_html .= "incorrect"; }
+      $answers_html .= ">User answer: {$user_values_array[$i]}</p>";
       $answers_html .= "</div><br/>"; 
     }
+    $percentage_scored = calculate_percentage($points, count($correct_answers_array));  
+    $grade = grade($percentage_scored); 
+
     $answers_html .= "<div class=\"test_summary\">"; 
     $answers_html .= "<p>Points scored: {$points} out of " . count($correct_answers_array) . "</p>"; 
-    $percentage_scored = calculate_percentage($points, count($correct_answers_array));  
     $answers_html .= "<p>Percentage scored: ". $percentage_scored ."%</p>"; 
+    $answers_html .= "<p>Your grade is: ".$grade."</p>"; 
     $answers_html .= "</div>";   
     $answers_html .= "</div>"; 
-    save_posted($points, $percentage_scored, $user_values_array);
+
+    save_posted($points, $percentage_scored, $grade, $user_values_array);
     return $answers_html; 
   }
 

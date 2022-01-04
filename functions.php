@@ -36,4 +36,18 @@
     } 
   } 
 
+  function find_all_transformations() {
+    global $connection; 
+    $query = "SELECT * FROM transformations"; 
+    $result = mysqli_query($connection, $query); 
+    if($result) {
+      // echo "all questions fetched"; 
+      return $result; 
+      // redirect_to('question_list');
+    } else {
+      // echo "all questions fetched"; 
+    }
+    return $result; 
+  }
+
 ?>  

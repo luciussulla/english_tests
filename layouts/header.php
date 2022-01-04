@@ -14,8 +14,7 @@
 <div class="menu">
   <img src="" class="logo">
   <ul class="navigation">
-    <?php echo '<li><a href="' . $root . 'index.php"> Home</a></li>' ?>
-    <?php echo '<li><a href="' . $root . 'questions/transformations/new.php">Add exercise</a></li>' ?>
+    <?php include('top-menu.php'); ?>
   </ul>
 </div><!-- end menu --> 
 

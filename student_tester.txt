@@ -1,10 +1,7 @@
-OK 1. Zalogować na cpanel webd  OK
-OK 2. zobaczyc jak budowac tam baze danych 
-
-3. przypomniec jak logowac do bazy danych z mysqli
-4. umiescie plik php na serwerze wbebd 
-5. przetestowac zapytanie do bazy danych
 
 BAZA DANYCH 
 użytkownik: bond007_tester
 haslo: bond007_tester
+
+implement edit page for the exercise 
+correct the style for the container 

@@ -12,12 +12,8 @@
 <div class="hero">
   <div class="menu index-menu">
     <img src="" class="logo">
-    <ul class="navigation">
-      <?php echo '<li><a href="' . $root . 'index.php"> Home</a></li>' ?>
-      <?php echo '<li><a href="' . $root . 'questions/transformations/new.php">Add exercise</a></li>' ?>
-    </ul>
+    <?php include('top-menu.php'); ?>
   </div><!-- end menu --> 
   <h1 class="hero-center">Test your english grammar skills</h1>
   <a href="./test/show.php" class="hero-btn hero-center">Start test</a>
 </div>
-

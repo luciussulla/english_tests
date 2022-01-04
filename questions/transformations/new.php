@@ -20,15 +20,15 @@
 <form class="form" action="./create.php" method="post">
   <p class="form-control">
     <label>Beginning of the sentnece</label>
-    <input type="text" name="question_start" value="" placeholder="question" />
+    <input type="text" name="question_start" value="" placeholder="" />
   </p>
   <p class="form-control">
     <label>Ending of the sentnece (leave blank if you do not need it)</label>
-    <input type="text" name="question_end" value="" placeholder="question" />
+    <input type="text" name="question_end" value="" placeholder="" />
   </p>
   <p class="form-control">
-    <label>Please provide answer</label>
-    <input type="text" name="answer" value="" placeholder="answer"/>
+    <label>Answer</label>
+    <input type="text" name="answer" value="" placeholder=""/>
   </p>
   <p>
     <input class="button form-button" type="submit" name="submit" value="Create question" />

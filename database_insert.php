@@ -3,7 +3,6 @@
   include('./functions.php'); 
 ?>
 
-
 <?php 
   // $question = $_POST["question"]; 
   // $answer = $_POST["answer"]; 

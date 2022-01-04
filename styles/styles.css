@@ -4,6 +4,9 @@
   color: rgba(30,30,30,1); 
 }
 /* HERO AND NAV MENU */ 
+body {
+  background-color: rgb(240, 246, 250);
+}
 
 .hero {
   position: relative; 
@@ -59,7 +62,7 @@
 .container {
   font-family: Helvetica, Arial, sans-serif;
   width: 100%;
-  height: 100vh; 
+  min-height: 100%;   
   background-color: rgb(240, 246, 250);
   color: rgba(30,30,30,1);
 }
