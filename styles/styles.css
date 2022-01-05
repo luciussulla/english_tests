@@ -232,3 +232,31 @@ body {
   border-radius: 5px; 
   padding: 20px; 
 }
+
+/* QUESTION LIST */ 
+
+.question-edit {
+  /* padding: 5px;  */
+  /* border: 1px solid blue;  */
+  margin: 10px; 
+  background-color: white; 
+  border-radius: 5px; 
+  padding: 10px; 
+
+  display: flex; 
+  align-items: center;
+}
+
+.fa-trash-alt {
+  color: red; 
+  font-size: 18px; 
+  margin: 0 30px 0 12px;  
+  cursor: pointer;   
+}
+
+.fa-edit {
+  color: green; 
+  font-size: 18px;
+  margin: 0 12px 0 12px;
+  cursor: pointer; 
+}

@@ -17,7 +17,6 @@
     $question_input .= " <input type=\"text\" value=\"\" name=\"answer-{$question_id}\" /> "; 
     $question_input .= $array[1];
     $question_input .= "</p>";
-    
     return $question_input; 
   }
 

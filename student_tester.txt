@@ -2,6 +2,3 @@
 BAZA DANYCH 
 użytkownik: bond007_tester
 haslo: bond007_tester
-
-implement edit page for the exercise 
-correct the style for the container 

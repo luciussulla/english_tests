@@ -6,7 +6,7 @@
 ?>
 
 <?php include('../../layouts/header.php'); ?>
-<?php include("../../layouts/footer.php") ?>
+
 
 <?php 
     $all_questions_array = find_all_transformations(); 
@@ -15,15 +15,17 @@
       foreach($question_assoc as $key=>$value) {
         if($key == "question") {
           // echo $value; 
-          $html .= "<p>"; 
+          $html .= "<div class=\"question-edit\" ><i class=\"far fa-edit\"></i>"; 
+          $html .= "<i class=\"far fa-trash-alt\"></i>";
           $html .= $value; 
-          $html .= "</p>"; 
+          $html .= "</div>"; 
         }
       }
     } 
     echo $html; 
 ?>
 
+<?php include("../../layouts/footer.php") ?>
 <?php 
   mysqli_close($connection); 
 ?>
