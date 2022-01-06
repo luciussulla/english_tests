@@ -1,21 +1,19 @@
 <?php include('./root.php'); ?>
-
 <?php 
   include('../db_connection.php'); 
   include('../functions.php'); 
-?>
-
+?> 
 <?php 
-  $query = "SELECT * FROM transformations"; 
-  $result = mysqli_query($connection, $query); 
+  // $query = "SELECT * FROM transformations"; 
+  // $result = mysqli_query($connection, $query); 
+  $result = find_all_transformations(); 
 
-  if(!$result) {
-    die("Database query failerd" . mysqli_error());
-  } else {
-    // echo "Successful query <br/>"; 
-  }
+  // if(!$result) {
+  //   die("Database query failerd" . mysqli_error());
+  // } else { 
+  //   // echo "Successful query <br/>"; 
+  // }
 ?>
-
 <?php include('../layouts/header.php')?>
   <div class="checked_answers">
     <br/>

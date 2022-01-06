@@ -118,7 +118,7 @@ body {
 .logo {
 
 }
-/* END OF MENU STYLES */ 
+/* END OF MENU */ 
 
 /* CHECKER BODY */
 .checked_answers {
@@ -206,6 +206,10 @@ body {
 
 .form-control {
   margin-top: 10px; 
+}
+
+.form-control input {
+  display: block; 
 }
 
 /* NEW EXERCISE */ 
