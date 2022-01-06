@@ -1,6 +1,7 @@
 <?php include('root.php') ?>
 <?php include($root . 'db_connection.php'); ?>
 <?php include('helpers.php')?>
+<?php include('../../functions.php'); ?>
 <?php include($root . 'layouts/header.php'); ?>
 <?php 
   $question_id = (int)$_GET["id"]; 

@@ -2,6 +2,7 @@
 <?php 
   include('../../db_connection.php'); 
   include('../../functions.php'); 
+  include('helpers.php'); 
 ?>
 <?php include('../../layouts/header.php'); ?>
 <?php 
