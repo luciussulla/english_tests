@@ -1,6 +1,8 @@
 <?php 
   include('../../db_connection.php'); 
   include('../../functions.php'); 
+  require_once($root . 'session/session.php'); 
+  confirmed_logged_in();
 ?>
 
 <?php 

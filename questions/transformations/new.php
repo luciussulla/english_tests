@@ -1,11 +1,11 @@
-<?php 
-  include('../../db_connection.php'); 
-  include('../../functions.php'); 
-?>
-
 <?php include('./root.php'); ?>
+<?php 
+  include($root . 'db_connection.php');
+  include('../../functions.php'); 
+  require_once($root . 'session/session.php');
+  confirmed_logged_in();
+?>
 <?php include('../../layouts/header.php'); ?>
-
 <div class="checked_answers">
 
 <div class="instructions">

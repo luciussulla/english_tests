@@ -2,8 +2,10 @@
 <?php include($root . 'db_connection.php'); ?>
 <?php include('helpers.php')?>
 <?php include('../../functions.php'); ?>
+<?php require_once($root . 'session/session.php'); ?> 
 <?php include($root . 'layouts/header.php'); ?>
 <?php 
+  confirmed_logged_in();
   $question_id = (int)$_GET["id"]; 
   $question = find_question_by_id($question_id); 
   $question_content = $question["question"]; 

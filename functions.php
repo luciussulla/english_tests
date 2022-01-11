@@ -59,14 +59,93 @@
   
     $result   = mysqli_query($connection, $query); 
     $question = mysqli_fetch_assoc($result); 
-    mysqli_free_result($result);
     
     if($question) {
       // print_r($question); 
       return $question; 
     } else {
-      echo "Db connection error"; 
+      echo "Db connection error";
     }
   }
 
-?>  
+ 
+  function generate_salt($length) {
+    $unique_random_string = md5(uniqid(mt_rand(), true)); 
+    $base64_string = base64_encode($unique_random_string); 
+    $modified_base64_string = str_replace('+', '.', $base64_string);
+    $salt = substr($modified_base64_string, 0, $length); 
+    echo "\n Salt is: {$salt} \n";
+    return $salt;  
+  } 
+
+  function password_encrypt($password){ 
+    $hash_format = "$2y$10$"; 
+    $salt_length = 22; 
+    $salt = generate_salt($salt_length);
+    // $salt = "Salt22CharactersOrMore";  
+    $format_and_salt = $hash_format . $salt; 
+    $hash = crypt($password, $format_and_salt); 
+    return $hash; 
+  }
+  
+  function password_check($password, $existing_hash) {
+    $hash = crypt($password, $existing_hash); 
+    if($hash === $existing_hash) {
+      return true; 
+    } else {
+      return false;
+    }
+  }
+
+  function find_user($email) {
+    global $connection; 
+    $user   = ''; 
+    $query  =  "SELECT * FROM teachers "; 
+    $query .=  "WHERE email = '{$email}' ";
+    $query .=  "LIMIT 1"; 
+    $result = mysqli_query($connection, $query); 
+    if($result) {
+      // echo "\n teacher found"; 
+      $user = mysqli_fetch_assoc($result); 
+      if ($user) {
+        return $user; 
+      } else {
+        return false; 
+      }
+    } else {
+      return false; 
+    }
+  }
+
+  function attempt_login($password, $email) {
+    $user = find_user($email); 
+    if($user) {
+      // echo "\n Teacher's name is: {$user['first_name']}"; 
+      $db_password = $user["password"]; 
+      // echo "\n db password is: {$db_password}"; 
+      // echo "\n user provided password is: {$password}"; 
+      $hash_provided_password = password_encrypt($password); 
+      // echo "\n encrypted user provided pass is: {$hash_provided_password}";
+      if(password_check($password, $db_password)) {
+        // echo "\n password correct"; 
+        return $user; 
+      } else {
+        return false; 
+      }
+    } else {
+      return false; 
+    }
+  }
+
+  function logged_in() {
+    return isset($_SESSION["user_id"]); 
+  }
+
+  function confirmed_logged_in() {
+    // global $root; 
+    if(!logged_in()) {
+      redirect_to('../../login/login.php'); 
+    } 
+  }
+
+ ?>  

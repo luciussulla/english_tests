@@ -2,6 +2,8 @@
 <?php include($root . 'db_connection.php'); ?>
 <?php include('helpers.php')?>
 <?php include('../../functions.php'); ?>
+<?php require_once($root . 'session/session.php'); ?> 
+<?php confirmed_logged_in(); ?>
 
 <?php 
   if(isset($_POST['submit'])) {
@@ -18,6 +20,7 @@
     // } else {
     //   $answer = "";
     // } 
+    
     $question_start = escape_string($_POST["question_start"]); 
     $question_end   = escape_string($_POST["question_end"]); 
     $question_id    = $_POST["id"]; 

@@ -3,9 +3,14 @@
   include('../../db_connection.php'); 
   include('../../functions.php'); 
   include('helpers.php'); 
+  require_once($root . 'session/session.php'); 
+  confirmed_logged_in();
 ?>
+
 <?php include('../../layouts/header.php'); ?>
 <?php 
+    if(isset($_SESSION["message"])) {echo message();}
+
     $all_questions_array = find_all_transformations(); 
     $html = ""; 
     foreach($all_questions_array as $question_assoc ) {
