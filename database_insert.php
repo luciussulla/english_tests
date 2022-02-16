@@ -7,8 +7,8 @@
   // $question = $_POST["question"]; 
   // $answer = $_POST["answer"]; 
   $question = "aa"; 
-  $answer = "bb"; 
-
+  $answer   = "bb"; 
+  
   $query  = "INSERT INTO transformations (";
   $query .= "question, answer"; 
   $query .= ") VALUES (";

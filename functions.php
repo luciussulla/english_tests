@@ -1,3 +1,4 @@
+<?php include('includes/initialize.php')?>
 <?php 
 
   function redirect_to($new_location='') {
@@ -136,15 +137,15 @@
       return false; 
     }
   }
-
-  function logged_in() {
+  
+  function logged_in()  {
     return isset($_SESSION["user_id"]); 
   }
 
-  function confirmed_logged_in() {
+  function confirmed_logged_in($root="") {
     // global $root; 
     if(!logged_in()) {
-      redirect_to('../../login/login.php'); 
+      redirect_to($root.'login/login.php'); 
     } 
   }
 

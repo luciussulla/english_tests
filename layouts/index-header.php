@@ -7,6 +7,7 @@
   <title>Test Checker</title>
   <?php echo '<link rel="stylesheet" href="' . $root . 'styles/styles.css" >' ?>
 </head>
+
 <body>
 <div class="container">
 <div class="hero">

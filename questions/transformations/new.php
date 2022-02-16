@@ -3,7 +3,7 @@
   include($root . 'db_connection.php');
   include('../../functions.php'); 
   require_once($root . 'session/session.php');
-  confirmed_logged_in();
+  confirmed_logged_in($root);
 ?>
 <?php include('../../layouts/header.php'); ?>
 <div class="checked_answers">

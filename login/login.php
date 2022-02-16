@@ -1,4 +1,5 @@
 <?php include('root.php'); ?>
+<?php require($root . 'includes/initialize.php') ?>
 <?php include($root . 'db_connection.php'); ?>
 <?php include($root . 'session/session.php'); ?>
 <?php include($root . 'functions.php'); ?>
@@ -24,7 +25,6 @@
 ?>
 
 <div class="checked_answers">
-
   <div class="instructions">
     <h1>Login as teacher</h1>
     <?php include('_form.php'); ?>  

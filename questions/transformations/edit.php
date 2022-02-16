@@ -5,7 +5,7 @@
 <?php require_once($root . 'session/session.php'); ?> 
 <?php include($root . 'layouts/header.php'); ?>
 <?php 
-  confirmed_logged_in();
+  confirmed_logged_in($root);
   $question_id = (int)$_GET["id"]; 
   $question = find_question_by_id($question_id); 
   $question_content = $question["question"]; 

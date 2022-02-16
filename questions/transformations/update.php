@@ -3,7 +3,7 @@
 <?php include('helpers.php')?>
 <?php include('../../functions.php'); ?>
 <?php require_once($root . 'session/session.php'); ?> 
-<?php confirmed_logged_in(); ?>
+<?php confirmed_logged_in($root); ?>
 
 <?php 
   if(isset($_POST['submit'])) {
