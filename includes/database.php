@@ -1,8 +1,11 @@
 <?php
+  // This class gives the possibility to do a query 
+  // as well as the option to get the mysqli_fetch_assoc to get the result 
+  // at the end of the file the instance od db is returned..
   require_once('config.php'); 
 
   class MySQLDatabase {
-    private $connection
+    private $connection; 
 
     public function __construct() {
       $this->open_connection(); 
@@ -25,14 +28,35 @@
       }
     }
 
-    public escape_value($string) {
+    public function query($query) {
+      $result = mysqli_query($this->connection, $query); 
+      if(!$result) {
+        die("Query failed ". mysqli_error($this->connection)); 
+      }
+      return $result; 
+    }
+
+    public function fetch_array($result) {
+      return mysqli_fetch_array($result); 
+    }
+
+    public function fetch_assoc($result) {
+      return mysqli_fetch_assoc($result); 
+    }
+
+    public function escape_value($string) {
       return mysqli_real_escape_string($this->connection, $string); 
     }   
 
-    public affected_rows() {
+    public function affected_rows() {
       return mysqli_affected_rows($connection); 
     }
-  }
-  $database = new MySQLDatabase(); 
 
+    public function insert_id() {
+      return mysqli_insert_id($this->connection); 
+    }
+
+  }
+
+  $database = new MySQLDatabase(); 
 ?>

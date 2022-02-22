@@ -1,53 +1,30 @@
-<?php 
-  include('../../db_connection.php'); 
-  include('../../functions.php'); 
-  require_once($root . 'session/session.php'); 
-  confirmed_logged_in($root);
+<?php
+ include('./root.php'); 
+ require_once('../../includes/initialize.php'); 
+?> 
+
+<?php
+  // check of logged in ... redirect accordingly 
 ?>
 
 <?php 
-  if(isset($_POST['submit'])) {
-    echo "form was submitted<br/>"; 
+  if(isset($_POST["submit"])) { // for POST request 
 
-    // if(isset($_POST['question'])) {
-    //   $question = escape_string($_POST['question']); 
-    // } else {
-    //   $question = ""; 
-    // } 
+    $transformation = new Transformation();
+    $new_transformation = $transformation->new_transformation($_POST); 
 
-    // if(isset($_POST['answer'])) {
-    //   $answer = escape_string($_POST['answer']); 
-    // } else {
-    //   $answer = "";
-    // } 
-    
-    $question_start = escape_string($_POST["question_start"]); 
-    $question_end   = escape_string($_POST["question_end"]); 
-    $question       = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
-    $answer         = escape_string($_POST["answer"]); 
-
-    $query  = "INSERT INTO transformations (";
-    $query .= "question, answer"; 
-    $query .= ") VALUES (";
-    $query .= " '{$question}','{$answer}' ";
-    $query .=  ")"; 
-
-    $result = mysqli_query($connection, $query); 
-
-    if($result) {
-      echo "<p>Success</p>"; 
-      redirect_to('../../index.php'); 
-    } else { 
-      die("Database query failed " . mysqli_error($connection)); 
+    if($new_transformation && $new_transformation->create()) {
+      // Transformation saved
+      // If we reload page the form will be resubmitted - we do not want this... so...
+      // we rredirect instead
+      redirect_to("new_transformation.php");
+    } else {
+      // failed
+      // $message = "There was an error that prevented comment from being saved"; 
+      echo "Create page, you were not redirected. Something has gone wrong"; 
     }
-
-  } else {
-    // probably a get request
-    redirect_to("../../index.php"); 
+  } else {                     // For GET request
+    $question = ""; 
+    $answer = ""; 
   }
-
-?>
-
-<?php 
-  mysqli_close($connection); 
 ?>
