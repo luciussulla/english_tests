@@ -12,6 +12,13 @@
       $result_array = static::find_by_sql($sql); 
       return $result_array; 
     }
+
+    public static function find_by_id($id) {
+      $sql = "SELECT * FROM ".static::$table_name." WHERE id={$id}"; 
+      $result_array = static::find_by_sql($sql); 
+      $result = !empty($result_array) ? array_shift($result_array) : false; 
+      return $result; 
+    }
     
     public static function find_by_sql($sql) {
       global $database; 

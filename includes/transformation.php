@@ -8,21 +8,41 @@
     public $id; 
     public $question; 
     public $answer; 
+    public $parts_of_sentence; 
+
     // find_all - inherited
-    // find_by_id
-    // instantiation
     public function new_transformation($request_params) {
       global $database; 
-      $transformation = new Transformation(); 
+      $transformation    = new Transformation(); 
+      $question_start    = trim($request_params["question_start"]); 
+      $question_end      = trim($request_params["question_end"]); 
 
-      $question_start = trim($request_params["question_start"]); 
-      $question_end   = trim($request_params["question_end"]); 
       $question       = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
       $answer         = trim($request_params["answer"]); 
 
-      $transformation->question = $database->escape_value($question); 
-      $transformation->answer   = $database->escape_value($answer); 
-      
+      $transformation->question          = $database->escape_value($question); 
+      $transformation->answer            = $database->escape_value($answer); 
+
+      return $transformation; 
+    }
+
+    private static function parse_question_into_fragments($question) {
+      $parts_of_transformation = array(); 
+      $part_1 = preg_split("/__/",$question)[0]; 
+      $part_2 = preg_split("/__/",$question)[1]; 
+      $parts_of_transformation[] = $part_1; 
+      $parts_of_transformation[] = $part_2; 
+      return $parts_of_transformation; 
+      }
+
+    public static function find_transformation_by_id($id) {
+      $result = parent::find_by_id($id); 
+      $transformation = new Transformation(); 
+      $transformation->id       = $result['id']; 
+      $transformation->question = $result['question']; 
+      $transformation->answer   = $result['answer']; 
+      $transformation->parts_of_sentence = self::parse_question_into_fragments($result['question']); 
+
       return $transformation; 
     }
 

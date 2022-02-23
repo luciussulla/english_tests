@@ -12,12 +12,11 @@
   //   echo "<br/>"; 
   // endforeach; 
   $html = ""; 
-  foreach($all_transformations as $question_assoc ) {
+  foreach($all_transformations as $question_assoc) {
       // print_r($question_assoc);
       // echo "<br/>"; 
       // echo "<p>". $question_assoc["id"] ."</p>"; 
       $html .= "<div class=\"question-edit\">";
-
       $html .= "<a href=\"edit.php?id={$question_assoc["id"]}\"><i class=\"far fa-edit\"></i></a>"; 
       $html .= "<i class=\"far fa-trash-alt\"></i>";
       $html .= $question_assoc["question"]; 
