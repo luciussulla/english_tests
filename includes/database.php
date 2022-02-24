@@ -5,7 +5,7 @@
   require_once('config.php'); 
 
   class MySQLDatabase {
-    private $connection; 
+    public $connection; 
 
     public function __construct() {
       $this->open_connection(); 
@@ -49,7 +49,7 @@
     }   
 
     public function affected_rows() {
-      return mysqli_affected_rows($connection); 
+      return mysqli_affected_rows($this->connection); 
     }
 
     public function insert_id() {

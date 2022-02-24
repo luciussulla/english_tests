@@ -27,15 +27,19 @@
     }
 
     private static function parse_question_into_fragments($question) {
-      $parts_of_transformation = array(); 
-      $part_1 = preg_split("/__/",$question)[0]; 
-      $part_2 = preg_split("/__/",$question)[1]; 
-      $parts_of_transformation[] = $part_1; 
-      $parts_of_transformation[] = $part_2; 
+      $parts_of_transformation = preg_split("/__/", $question); 
+      // $parts_of_transformation = array(); 
+      // $part_1 = preg_split("/__/",$question)[0]; 
+      // $part_2 = preg_split("/__/",$question)[1]; 
+      // $parts_of_transformation[] = $part_1; 
+      // $parts_of_transformation[] = $part_2; 
       return $parts_of_transformation; 
-      }
+    }
 
     public static function find_transformation_by_id($id) {
+      global $database; 
+      $id = $database->escape_value($id); 
+
       $result = parent::find_by_id($id); 
       $transformation = new Transformation(); 
       $transformation->id       = $result['id']; 
@@ -94,6 +98,25 @@
     // delete 
 
     // update 
+    public function update($_post) {
+      global $database;
+      $question_start = trim($_post["question_start"]); 
+      $question_end   = trim($_post["question_end"]); 
+      $answer         = trim($_post["answer"]); 
+
+      $question_id    = $database->escape_value($_post["id"]); 
+      $question_start = $database->escape_value($question_start); 
+      $question_end   = $database->escape_value($question_end);  
+      $question       = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
+      $answer         = $database->escape_value($answer);  
+
+      $query  = "UPDATE transformations ";
+      $query .= "SET question='{$question}', answer='{$answer}' ";
+      $query .= "WHERE id={$question_id}"; 
+      
+      $result = $database->query($query);
+      return ($database->affected_rows()>=0) ? $result : false; // If there are no changes in the update form the db will return 0, and -1 if there's an error
+    } 
 
   }
 ?>

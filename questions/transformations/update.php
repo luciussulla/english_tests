@@ -1,9 +1,5 @@
 <?php include('root.php') ?>
-<?php include($root . 'db_connection.php'); ?>
-<?php include('helpers.php')?>
-<?php include('../../functions.php'); ?>
-<?php require_once($root . 'session/session.php'); ?> 
-<?php confirmed_logged_in($root); ?>
+<?php require_once('../../includes/initialize.php') ?>
 
 <?php 
   if(isset($_POST['submit'])) {
@@ -21,32 +17,38 @@
     //   $answer = "";
     // } 
     
-    $question_start = escape_string($_POST["question_start"]); 
-    $question_end   = escape_string($_POST["question_end"]); 
-    $question_id    = $_POST["id"]; 
-    $question       = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
-    $answer         = escape_string($_POST["answer"]);  
+    // $question_start = escape_string($_POST["question_start"]); 
+    // $question_end   = escape_string($_POST["question_end"]); 
+    // $question_id    = $_POST["id"]; 
+    // $question       = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
+    // $answer         = escape_string($_POST["answer"]);  
 
-    $query  = "UPDATE transformations ";
-    $query .= "SET question='{$question}', answer='{$answer}' ";
-    $query .= "WHERE id={$question_id}"; 
+    // $query  = "UPDATE transformations ";
+    // $query .= "SET question='{$question}', answer='{$answer}' ";
+    // $query .= "WHERE id={$question_id}"; 
 
-    $result = mysqli_query($connection, $query); 
+    // $result = mysqli_query($connection, $query); 
+
+    $transformation = Transformation::find_transformation_by_id($_POST["id"]); 
+    // var_dump($transformation); 
+    $result = $transformation->update($_POST); 
 
     if($result) {
       echo "<p>Success</p>"; 
-      redirect_to('question_list.php'); 
+      print_r($result); 
+      var_dump($result); 
+      redirect_to('index.php'); 
     } else { 
-      die("Database query failed " . mysqli_error($connection)); 
+      echo "<p>Fail</p>"; 
+      print_r($result); 
+      echo "<br/>"; 
+      var_dump($result); 
+      die("Database query failed " . mysqli_error($database->connection)); 
     }
 
   } else {
     // probably a get request
-    echo "blabla wrong something not post "; 
+    echo "not a post request"; 
     // redirect_to("edit.php"); 
   }
-?>
-
-<?php 
-  mysqli_close($connection); 
 ?>

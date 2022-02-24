@@ -4,18 +4,13 @@
 <?php include($root . 'layouts/header.php'); ?>
 <?php 
   // confirmed_logged_in($root);
-  
   $id = (int)$_GET["id"]; 
-  $transformation = Transformation::find_transformation_by_id($id); 
-  // $question_content = $question["question"]; 
-  // $answer = $question["answer"]; 
-  // $sentence_start = proces_question_from_db($start=true,  $question_content); 
-  // $sentence_end   = proces_question_from_db($start=false, $question_content); 
+  $transformation = Transformation::find_transformation_by_id($id);
 ?>
 <div class="checked_answers">
 
   <form class="form" action="update.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $question_id ?>"/>
+    <input type="hidden" name="id" value="<?php echo $transformation->id ?>"/>
     <p class="form-control">
       <label>Beginning of the sentnece</label>
       <input class="question_input" type="text" name="question_start" value="<?php echo $transformation->parts_of_sentence[0] ?>" placeholder="" />
