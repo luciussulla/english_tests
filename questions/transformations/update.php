@@ -32,17 +32,17 @@
     $transformation = Transformation::find_transformation_by_id($_POST["id"]); 
     // var_dump($transformation); 
     $result = $transformation->update($_POST); 
-
+    
     if($result) {
       echo "<p>Success</p>"; 
-      print_r($result); 
-      var_dump($result); 
+      // print_r($result); 
+      // var_dump($result); 
       redirect_to('index.php'); 
     } else { 
       echo "<p>Fail</p>"; 
-      print_r($result); 
-      echo "<br/>"; 
-      var_dump($result); 
+      // print_r($result); 
+      // echo "<br/>"; 
+      // var_dump($result); 
       die("Database query failed " . mysqli_error($database->connection)); 
     }
 

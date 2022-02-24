@@ -95,8 +95,6 @@
       return $question_input; 
     }
 
-    // delete 
-
     // update 
     public function update($_post) {
       global $database;
@@ -117,6 +115,17 @@
       $result = $database->query($query);
       return ($database->affected_rows()>=0) ? $result : false; // If there are no changes in the update form the db will return 0, and -1 if there's an error
     } 
+
+    // delete 
+    public function delete() {
+      global $database; 
+      $id = $database->escape_value($this->id); 
+      $sql  = "DELETE FROM ".self::$table_name; 
+      $sql .= " WHERE id={$id}"; 
+      $sql .= " LIMIT 1"; 
+      $result = $database->query($sql); 
+      return ($database->affected_rows==1) ? $result : false; 
+    }
 
   }
 ?>
