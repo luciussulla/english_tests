@@ -77,7 +77,7 @@
     $query .= "(test_id, student_name, grade, percentage, answers_json) ";
     $query .= "VALUES (1, '{$student_name}', {$grade}, {$percentage_scored}, '{$answers_array_json}')";
     // redirect 
-
+    
     $result = mysqli_query($connection, $query);
     if($result) {
       // $_SESSION["message"] = "Page created.";
