@@ -279,3 +279,9 @@ body {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
+/* Test new form */  
+
+.question-edit input[type="checkbox"] {
+  margin-right: 20px; 
+}

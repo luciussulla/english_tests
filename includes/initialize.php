@@ -9,5 +9,5 @@
   require_once(LIB_PATH.DS.'functions.php'); 
   // core objects 
   require_once(LIB_PATH.DS.'transformation.php'); 
-
+  require_once(LIB_PATH.DS.'test.php'); 
 ?>

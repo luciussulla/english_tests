@@ -10,7 +10,7 @@
     public function __construct() {
       $this->open_connection(); 
     }
-
+    
     public function open_connection() {
       $this->connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME); 
       if(!$this->connection) {
