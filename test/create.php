@@ -13,14 +13,11 @@
   $question_ids_array = $_POST["question_ids"]; 
   // print_r($question_ids_array); 
   $test = new Test();
-  if($test->generate_test($question_ids_array)) {
-    if($test->save()) {
+  if($json = $test->save($question_ids_array)) {
       echo "<br/>"; 
       echo "Test has been saved"; 
       // here we can try to print the results
-    } else {
-      echo "Test has not been saved"; 
-    }
+      print_r($json); 
   } else {
     echo "Failed to generate test"; 
   } 

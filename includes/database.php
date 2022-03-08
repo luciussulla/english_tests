@@ -2,6 +2,7 @@
   // This class gives the possibility to do a query 
   // as well as the option to get the mysqli_fetch_assoc to get the result 
   // at the end of the file the instance od db is returned..
+  // instances can acces $connection object
   require_once('config.php'); 
 
   class MySQLDatabase {
@@ -14,9 +15,7 @@
     public function open_connection() {
       $this->connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME); 
       if(!$this->connection) {
-        die("Database connection failed: " . 
-        mysqli_connect_error() . " (" .
-        mysqli_connect_errno() . ")"
+        die("Database connection failed: ".mysqli_connect_error()
       ); 
       }
     }

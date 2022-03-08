@@ -17,11 +17,11 @@
       $question_start    = trim($request_params["question_start"]); 
       $question_end      = trim($request_params["question_end"]); 
 
-      $question       = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
-      $answer         = trim($request_params["answer"]); 
+      $question = $question_start . "__" . $question_end; // "__" will serve as separator for two parts of the question.
+      $answer   = trim($request_params["answer"]); 
 
-      $transformation->question          = $database->escape_value($question); 
-      $transformation->answer            = $database->escape_value($answer); 
+      $transformation->question = $database->escape_value($question); 
+      $transformation->answer   = $database->escape_value($answer);
 
       return $transformation; 
     }
@@ -72,6 +72,7 @@
     }  
 
     private function split_question($question_assoc) {
+      // this is for outputting the question
       // split question uses the build_question function
       $question_from_db = $question_assoc["question"]; 
       $is_match = preg_match("/__/", $question_from_db); // quesion in db has __ where the user shuld privide his answer (blank space for user to insert answer)
@@ -118,8 +119,8 @@
 
     // delete 
     public function delete() {
-      global $database; 
-      $id = $database->escape_value($this->id); 
+      global  $database; 
+      $id   = $database->escape_value($this->id); 
       $sql  = "DELETE FROM ".self::$table_name; 
       $sql .= " WHERE id={$id}"; 
       $sql .= " LIMIT 1"; 

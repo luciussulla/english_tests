@@ -32,10 +32,12 @@ class TestResult {
 	$answersJSON = "";
 	$percentage_scored = ""; 
 	$grade = ""; 
+
+	public function checker() {
+		// scale calculation
+	}
 	
 }
-
-
 
 
 form for the creation of a new test 

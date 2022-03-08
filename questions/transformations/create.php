@@ -2,11 +2,9 @@
  include('./root.php'); 
  require_once('../../includes/initialize.php'); 
 ?> 
-
 <?php
   // check of logged in ... redirect accordingly 
 ?>
-
 <?php 
   if(isset($_POST["submit"])) { // for POST request 
 
@@ -24,7 +22,7 @@
       echo "Create page, you were not redirected. Something has gone wrong"; 
     }
   } else {                     // For GET request
-    $question = ""; 
-    $answer = ""; 
+    // $question = ""; 
+    // $answer = ""; 
   }
 ?>

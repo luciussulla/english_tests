@@ -5,11 +5,12 @@ class Test extends DatabaseObject {
 
 	private static $table_name = "tests"; 
 	public $id = ""; //will serve as unique test link
-	public $exercies_array; 
-	public $questions_array;  
-	public $answers_array; 
+	// public $exercies_array; // this inlcudes both questions and answers
+	public $transformations_questions_array;  
+	public $transformations_answers_array; 
 	
 	private function questions_answers_array($db_result_set) {
+		// this is a helper function for generate test
 		global $database; 
 		// we need to build 2 arrays
 		// - questions with q_id and q_content
@@ -19,53 +20,58 @@ class Test extends DatabaseObject {
 		// both can be assigned as attributes of the test instance;  
 
 		while($row = $database->fetch_assoc($db_result_set)) {
-			$this->exercises_array[] = $row; 
-			// 1 - create an associative array for question 
+			// 1 - create general exercies array that stores both questions and answers (it may be useful); 
+			// $this->exercises_array[] = $row; 
+
+			// 2 - create an associative array for question 
 			$new_question = array(); 
 			// extract questions id 
 			// extract question content 
 			// build new $question assoc array 
 			$new_question[$row['id']] = $row['question']; 
 			// add both to $questions_array[] = $new_question; 
-			$this->questions_array[] = $new_question; 
+			$this->transformations_questions_array[] = $new_question; 
 
-			// 2- create an associative array for answer 
+			// 3- create an associative array for answer 
 			$new_answer = array(); 
 			// use extracted id 
 			// extract answer content 
 			// build new $answer assoc array 
 			$new_answer[$row['id']] = $row['answer']; 
 			// add both to $answers_array[] = $new_answer; 
-			$this->answers_array[] = $new_answer; 
+			$this->transformations_answers_array[] = $new_answer; 
 		}
 	}
 
-	public function save() {
+	public function save($question_ids_array) {
 		global $database; 
 		// at this point the instance has the following values: 
-		// public $exercies_array  = array(); 
-		// public $questions_array = null;  
-		// public $answers_array 	 = null;
-
+		// public $exercies_array  
+		// public $questions_array 
+		// public $answers_array 	
+		
 		// 1 - extract those values 
 		// 2 - parse them as json strings 
 		// 3 - save them into respective columns into the db
+		
+		// $questions_array_json = json_encode($this->questions_array); 
+		// $answers_array_json   = json_encode($this->answers_array); 
+		// $exercises_array_json	= json_encode($this->exercises_array); 
 
-		$questions_array_json = json_encode($this->questions_array); 
-		$answers_array_json   = json_encode($this->answers_array); 
-		$exercises_array_json	= json_encode($this->exercises_array); 
-
+		$test_exercises_assoc = array(); 
+		$test_exercises_assoc['transformations'] = $question_ids_array; 
+		$test_exercises_json = json_encode($test_exercises_assoc); 
+		
 		$sql = "INSERT INTO " . self::$table_name . "("; 
 		$sql .= "questions_array"; 
 		$sql .= ") VALUES (";
-		$sql .= "'{$exercises_array_json}'"; 
+		$sql .= "'{$test_exercises_json}'"; 
 		$sql .= ")"; 
 		
 		$result = $database->query($sql);
-		// return !$result ? false : true; 
-		return $result;  
+		return $result ? $this : false;
 
-		// tests table has the following composition: 
+		// tests table has the following composition and needs to be changed: 
 		/* 
 		CREATE TABLE tests (
 			id int(5) AUTO_INCREMENT PRIMARY KEY, 

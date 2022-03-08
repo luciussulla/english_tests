@@ -12,7 +12,7 @@
   //   die("Database query failerd" . mysqli_error());
   // } else { 
   //   // echo "Successful query <br/>"; 
-  // }
+  // } 
 ?>
 <?php include('../layouts/header.php')?>
   <div class="checked_answers">
@@ -39,6 +39,5 @@
     ?>
   </div><!-- checked answers -->
   <?php mysqli_free_result($result);?>
-
 <?php mysqli_close($connection); ?>
 <?php include('../layouts/footer.php')?>
