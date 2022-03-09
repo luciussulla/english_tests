@@ -281,11 +281,19 @@ body {
 }
 
 /* Test new form */  
-
 .question-edit input[type="checkbox"] {
   margin-right: 20px; 
 }
 
 .new-test-form {
   margin: 20px; 
+}
+
+/* Test to complete by students */ 
+.separate_question {
+  margin: 20px 10px; 
+}
+
+.question_input {
+  margin-top: 7px; 
 }

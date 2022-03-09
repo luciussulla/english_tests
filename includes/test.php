@@ -102,9 +102,9 @@ class Test extends DatabaseObject {
 		// print_r($question_beginning); 
 		// print_r($question_end); 
 
-    $question_input = "<p>";
+    $question_input = "<p class=\"separate_question\">";
     $question_input .= $question_beginning; 
-    $question_input .= " <input type=\"text\"  name=\"{$exercise_type}[]{$question_id}\" value=\"\" /> "; 
+    $question_input .= " <input class=\"question_input\" type=\"text\"  name=\"{$exercise_type}[]{$question_id}\" value=\"\" /> "; 
     $question_input .= 	$question_end;
     $question_input .= "</p>";
     return $question_input; 
