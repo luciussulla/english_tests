@@ -297,3 +297,7 @@ body {
 .question_input {
   margin-top: 7px; 
 }
+
+.form-box {
+  margin: 40px; 
+}
