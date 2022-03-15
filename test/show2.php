@@ -19,13 +19,12 @@
     <input type="hidden" name="test_id" value="<?php echo $test_id ?>" > 
     <div>Please enter your nickname: <input type="text" name="student_name" value=""></div>
     <?php 
-      $test = new Test(); 
-      $result = $test->generate_test($test_id); 
-
+      $test = new Test(); // This function should get the id and return already the html... straight from the constructor function
+      $result = $test->generate_test($test_id);
 	    echo $result->generate_transformations_html();  
     ?>
     <input class="button form-button" type="submit" name="submit" value="Send" >
   </form >
-
+  
 </div>
 <?php include('../layouts/footer.php'); ?>

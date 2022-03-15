@@ -83,7 +83,7 @@ class Test extends DatabaseObject {
 		// print_r($question_content); 
 		// print_r($question_id); 
 		// print_r($question_type); 
-
+		
     $is_match = preg_match("/__/", $question_content); // quesion in db has __ where the user shuld privide his answer (blank space for user to insert answer)
     if ($is_match) {
       $two_question_parts_array =  preg_split("/__/", $question_content);
@@ -94,7 +94,7 @@ class Test extends DatabaseObject {
       return $question_content;  
     } 
   }
-  
+   
   private function build_question($exercise_type, $question_id, $question_content) {
 		$both_question_parts = $this->split_question($question_content); 
 		$question_beginning  = $both_question_parts[0]; 

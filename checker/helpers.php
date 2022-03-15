@@ -21,44 +21,7 @@
     return $correct_answers_array; 
   }
 
-  function calculate_percentage($points, $max_points) {
-    $result = round(($points/$max_points),2) * 100; 
-    return $result;
-  }
-
-  function grade($percent) {
-    $grade = null; 
-    /*
-    0	-	60 %	=	2
-    61 - 70 %	=	3
-    71 - 75 %	=	3,5
-    76 - 85 %	=	4
-    86 - 90 %	=	4,5
-    91 - 100 %	=	5
-    */ 
-    switch($percent) {
-      case ($percent < 61 ): 
-        $grade = 2; 
-        break; 
-      case ($percent < 71 ): 
-        $grade = 3; 
-        break; 
-      case ($percent < 76): 
-        $grade = 3.5; 
-        break; 
-      case ($percent < 86):
-        $grade = 4; 
-        break;
-      case ($percent < 91): 
-        $grade = 4.5; 
-        break;
-      case ($percent < 1001): 
-        $grade = 5;
-      default: 
-        $grade = null;    
-    }
-    return $grade; 
-  }
+  
 
   function save_posted($points, $percentage_scored, $grade, $user_values_array) {
     include('../db_connection.php'); 

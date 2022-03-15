@@ -10,4 +10,5 @@
   require_once(LIB_PATH.DS.'transformation.php'); 
   require_once(LIB_PATH.DS.'test.php'); 
   require_once(LIB_PATH.DS.'user_test.php'); 
+  require_once(LIB_PATH.DS.'grader.php'); 
 ?>
