@@ -60,7 +60,7 @@ class Grader {
     $html .= "<p class=\"score\"> Your grade is: " . $this->grade . "</p>"; 
     $html .= "</> "; 
 
-    echo $html;  
+    return $html;  
   }
 
 }

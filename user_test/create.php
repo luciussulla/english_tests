@@ -17,16 +17,13 @@ $new_user_test = new UserTest($_POST);
 
 // check user test 
 $new_user_test->check_test($db_test_instance); 
-$max_points     = $new_user_test->max_points; 
-$scored_points  = $new_user_test->scored_points; 
-$new_grader     = new Grader($scored_points, $max_points); 
 
 // save test results; 
-$new_user_test->save($new_grader); 
+$new_user_test->save(); 
 ?>
 
 <?php include('../layouts/header.php');  ?>
   <div class="checked_answers">
-    <?php $new_grader->result_html(); ?>
+    <?php echo $new_user_test->test_result_html(); ?>
   </div>
 <?php include('../layouts/footer.php'); ?>

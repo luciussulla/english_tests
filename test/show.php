@@ -1,43 +1,30 @@
-<?php include('./root.php'); ?>
 <?php 
-  include('../db_connection.php'); 
-  include('../functions.php'); 
-?> 
-<?php 
-  // $query = "SELECT * FROM transformations"; 
-  // $result = mysqli_query($connection, $query); 
-  $result = find_all_transformations(); 
+  require_once('../includes/initialize.php');
+  require('root.php');  
+?>  
 
-  // if(!$result) {
-  //   die("Database query failerd" . mysqli_error());
-  // } else { 
-  //   // echo "Successful query <br/>"; 
-  // } 
+<?php 
+  if(!isset($_GET["id"])) {
+    redirect_to("../index.php");
+    die();  
+  } else {
+    $test_id = $_GET["id"]; 
+  }
 ?>
-<?php include('../layouts/header.php')?>
-  <div class="checked_answers">
-    <br/>
-    <p>Please fill in your test and click "send"</p><br/>
+
+<?php include('../layouts/header.php');  ?>
+<div class="checked-answers">
+  
+  <form class="form-box" action="../user_test/create.php" method="post"> 
+    <input type="hidden" name="test_id" value="<?php echo $test_id ?>" > 
+    <div>Please enter your nickname: <input type="text" name="student_name" value=""></div>
     <?php 
-      $answers_array = array(); // prepare JONS with correct answers and question_ids which then is send as hidden field to show for checking users answers
-      $form = "<form action=\"../checker/checker.php\" method=\"post\">"; 
-      $form .= "<input type=\"hidden\" name=\"test_id\" value=\"1\" >"; 
-      $form .= "<p>Please enter your nickname: </p>"; 
-      $form .= "<input type=\"text\" name=\"student_name\" value=\"\" >";
-      while($row = mysqli_fetch_assoc($result)) {
-        $answers_array[] = array('id'=>$row['id'], 'answer'=>$row['answer']); 
-        // use a validation in the checker to see if the number of sent questions is the same as the number of anwers in the JSON array (make suer we are checking the right things)
-        $ready_question = split_question($row);
-        $form .= "<div class=\"single-question\">";
-        $form .= $ready_question;   
-        $form .= "</div>"; 
-      }
-      $form .= "<input type=\"hidden\" name=\"answers_json\" value='" . json_encode($answers_array) . "' >";
-      $form .= "<input class=\"button form-button\" type=\"submit\" name=\"submit\"/ value=\"Send\" >"; 
-      $form .= "</form>"; 
-      echo $form; 
+      $test = new Test(); // This function should get the id and return already the html... straight from the constructor function
+      $result = $test->generate_test($test_id);
+	    echo $result->generate_transformations_html();  
     ?>
-  </div><!-- checked answers -->
-  <?php mysqli_free_result($result);?>
-<?php mysqli_close($connection); ?>
-<?php include('../layouts/footer.php')?>
+    <input class="button form-button" type="submit" name="submit" value="Send" >
+  </form >
+  
+</div>
+<?php include('../layouts/footer.php'); ?>
