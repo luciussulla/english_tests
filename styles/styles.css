@@ -301,3 +301,10 @@ body {
 .form-box {
   margin: 40px; 
 }
+
+/* Test result page */ 
+
+.score {
+  font-size: 1.5rem; 
+  padding: 15px; 
+}

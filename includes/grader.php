@@ -6,7 +6,7 @@ class Grader {
   public $grade; 
   public $points;
   public $max_points; 
-
+  
   function __construct($points, $max_points) {
     $this->max_points = $max_points; 
     $this->points     = $points; 
@@ -52,5 +52,16 @@ class Grader {
     }
     $this->grade = $grade; 
   }
+  
+  public function result_html() {
+    $html = ""; 
+    $html .=  "<div class=\"result_tab\"/>"; 
+    $html .= "<p class=\"score\"> You have scored: " . $this->points . " points out of  " . $this->max_points . "</p>";   
+    $html .= "<p class=\"score\"> Your grade is: " . $this->grade . "</p>"; 
+    $html .= "</> "; 
+
+    echo $html;  
+  }
+
 }
 ?>

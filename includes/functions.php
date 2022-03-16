@@ -68,7 +68,6 @@
     }
   }
 
- 
   function generate_salt($length) {
     $unique_random_string = md5(uniqid(mt_rand(), true)); 
     $base64_string = base64_encode($unique_random_string); 

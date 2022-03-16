@@ -1,6 +1,6 @@
-p<?php require_once('initialize.php');
+<?php require_once('initialize.php');
 
-  class UserTest extends DatabaseObject {
+  class UserTest {
 
     // This class's main function is to: 
     // - store user answers in instance variable
@@ -55,8 +55,6 @@ p<?php require_once('initialize.php');
       array_shift($db_test_instance->transformations_answers_array); // getting rid of the "exercise-type: trasformations";
       $this->db_test_answers = $this->sanitize_answers($db_test_instance->transformations_answers_array);  
       $this->max_points = count($this->db_test_answers); 
-      // echo $this->max_points; 
-      // echo count($this->db_test_answers); 
 
       //they keys in the db_test_answer and user_answers_array are the exercise numbers
       $scored_points=0; 
@@ -70,17 +68,16 @@ p<?php require_once('initialize.php');
       return $scored_points; 
     }
     
-    public function save($post_request) {
+    public function save($graded_test_instance) {
       global $database; 
       
-      $this->answers_array;  
-      $answers_json  = json_encode($answers_array); 
+      $answers_json  = json_encode($this->user_answers_array); 
       // Check the test before you save it.; 
 
       $query = "INSERT INTO user_tests ("; 
-      $query .= "test_id, student_name, answers_array"; 
+      $query .= "test_id, student_name, answers_array, grade, percentage"; 
       $query .= ") VALUES ("; 
-      $query .= "'{$test_id}', '{$student_name}', '{$answers_json}'"; 
+      $query .= "'{$this->test_id}', '{$this->student_name}', '{$answers_json}', {$graded_test_instance->grade}, {$graded_test_instance->percentage}"; 
       $query .= ")";
     
       $result_set = $database->query($query); 

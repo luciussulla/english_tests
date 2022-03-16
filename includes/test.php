@@ -155,4 +155,5 @@ class Test extends DatabaseObject {
 		return $test_instance_with_filled_attributes; 
 	} 
 }
+
 ?>
