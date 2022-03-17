@@ -94,13 +94,13 @@
       $query .= "test_id, student_name, answers_array, grade, percentage"; 
       $query .= ") VALUES ("; 
       $query .= "'{$this->test_id}', '{$this->student_name}', '{$answers_json}', {$this->grade}, {$this->percentage}"; 
-      $query .= ")";
+      $query .= ")"; 
     
       $result_set = $database->query($query); 
       if($result_set) {
-        // echo "Test has been saved"; 
+        echo "Test has been saved"; 
       } else {
-        // echo "There's been a problem, test not saves"; 
+        echo "There's been a problem, test not saved"; 
       }
     }
 
