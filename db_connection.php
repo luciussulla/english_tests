@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
 
   // $dbhost = "localhost";
   // $dbuser = "bond007_tester"; 
@@ -18,4 +18,4 @@
           mysqli_connect_errno() . ")"
     ); 
   }
-?>
+?> -->

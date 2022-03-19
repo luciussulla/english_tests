@@ -8,7 +8,7 @@
     // - accept db answers 
     // - check user answers stored in instance var agains the db_answers sent to it 
     // - grade and save user results
-
+    
     public $user_answers_array; 
     public $db_test_answers; 
     public $grade; 
@@ -25,9 +25,6 @@
       $this->test_id =            $database->escape_value($post_request["test_id"]);  
       $this->student_name =       $database->escape_value($post_request["student_name"]); 
       $this->user_answers_array = $this->sanitize_answers($post_request["transformations"]);
-      $this->db_test_answers; 
-      $this->scored_points; 
-      $this->max_points; 
     }
 
     public function sanitize_answers($answers) {
@@ -95,6 +92,8 @@
       $query .= ") VALUES ("; 
       $query .= "'{$this->test_id}', '{$this->student_name}', '{$answers_json}', {$this->grade}, {$this->percentage}"; 
       $query .= ")"; 
+
+      echo $query; 
     
       $result_set = $database->query($query); 
       if($result_set) {

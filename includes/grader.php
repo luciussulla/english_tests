@@ -13,14 +13,13 @@ class Grader {
     $this->calculate_percentage(); 
     $this->grade(); 
   }
-
+  
   private function calculate_percentage() {
-    $this->percentage = round(($this->points/$this->max_points),0) * 100; 
+    $this->percentage = round(($this->points/$this->max_points),2) * 100; 
     // echo "|".$this->percentage."|"; 
   }
 
   private function grade() {
-    $grade = null; 
     /*
     0	-	60 %	=	2
     61 - 70 %	=	3
@@ -29,30 +28,27 @@ class Grader {
     86 - 90 %	=	4,5
     91 - 100 %	=	5
     */ 
-    $percent = $this->percentage; 
-    switch($percent) {
-      case ($percent < 61): 
-        $grade = 2; 
-        break; 
-      case ($percent < 71): 
-        $grade = 3; 
-        break; 
-      case ($percent < 76): 
-        $grade = 3.5; 
-        break; 
-      case ($percent < 86):
-        $grade = 4; 
-        break;
-      case ($percent < 91): 
-        $grade = 4.5; 
-        break;
-      case ($percent < 101): 
-        $grade = 5;
-        break; 
-      default: 
-        $grade = null;    
+
+    $percent = (int)$this->percentage;  
+
+    if((int)$percent < 61) {
+      $grade = 2; 
+    } 
+    else if ($percent< 71) {
+      $grade = 3; 
+    } 
+    else if ($percent < 76) {
+      $grade = 3.5; 
+    } 
+    else if ($percent < 86) {
+      $grade = 4; 
     }
-    $this->grade = $grade; 
+    else if ($perent < 91) {
+      $grade = 4.5; 
+    }
+    else if ($percent < 101) {
+      $grade = 5; 
+    }
   }
   
   public function result_html() {
